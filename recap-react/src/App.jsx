@@ -13,8 +13,8 @@ function App() {
         <li>State</li>
         <li>Load Data</li>
       </ol>
-      <Posts></Posts>
       <hr />
+      <Posts></Posts>
     </>
   );
 }
