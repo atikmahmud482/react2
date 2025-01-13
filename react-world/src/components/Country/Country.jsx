@@ -8,7 +8,7 @@ const Country = ({ country, handleVisitedCountry, handleVisitedFlags }) => {
     setVisited(!visited);
   };
 
-  //   const passWithParams = () => handleVisitedCountry(country)
+  //   const passWithParams = () => handleVisitedCountry(country);
 
   return (
     <div className="country">
