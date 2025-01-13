@@ -1,35 +1,101 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
+import Watch from "./components/Watch/Watch";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [watches, setWatches] = useState([]);
+
+  useEffect(() => {
+    fetch("watches.json")
+      .then((res) => res.json())
+      .then((data) => setWatches(data));
+  }, []);
+  // const watches = [
+  //   { id: 1, name: "apple Watch", price: 200 },
+  //   { id: 2, name: "samsung Watch", price: 300 },
+  //   { id: 3, name: "mi Watch", price: 400 },
+  // ];
+  // const watches = [
+  //   {
+  //     id: 1,
+  //     brand: "Apple",
+  //     model: "Apple Watch Series 9",
+  //     price: 399,
+  //     features: [
+  //       "Heart Rate Monitor",
+  //       "GPS",
+  //       "Blood Oxygen Sensor",
+  //       "Always-On Retina Display",
+  //     ],
+  //     waterResistant: true,
+  //     batteryLife: "18 hours",
+  //   },
+  //   {
+  //     id: 2,
+  //     brand: "Samsung",
+  //     model: "Galaxy Watch 6",
+  //     price: 349,
+  //     features: [
+  //       "ECG Monitoring",
+  //       "Sleep Tracking",
+  //       "Blood Pressure Monitor",
+  //       "Customizable Watch Faces",
+  //     ],
+  //     waterResistant: true,
+  //     batteryLife: "40 hours",
+  //   },
+  //   {
+  //     id: 3,
+  //     brand: "Garmin",
+  //     model: "Garmin Venu 2",
+  //     price: 399,
+  //     features: [
+  //       "Pulse Ox Sensor",
+  //       "Fitness Tracking",
+  //       "Music Storage",
+  //       "Advanced Sleep Monitoring",
+  //     ],
+  //     waterResistant: true,
+  //     batteryLife: "11 days",
+  //   },
+  //   {
+  //     id: 4,
+  //     brand: "Fitbit",
+  //     model: "Fitbit Versa 4",
+  //     price: 229,
+  //     features: [
+  //       "Heart Rate Tracking",
+  //       "Step Counter",
+  //       "Active Zone Minutes",
+  //       "Smart Notifications",
+  //     ],
+  //     waterResistant: true,
+  //     batteryLife: "6 days",
+  //   },
+  //   {
+  //     id: 5,
+  //     brand: "Amazfit",
+  //     model: "GTR 4",
+  //     price: 199,
+  //     features: [
+  //       "Dual-Band GPS",
+  //       "Alexa Built-In",
+  //       "Blood Oxygen Saturation",
+  //       "Workout Recognition",
+  //     ],
+  //     waterResistant: true,
+  //     batteryLife: "14 days",
+  //   },
+  // ];
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
       <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {watches.map((watch) => (
+        <Watch key={watch.id} watch={watch}></Watch>
+      ))}
     </>
-  )
+  );
 }
 
-export default App
+export default App;

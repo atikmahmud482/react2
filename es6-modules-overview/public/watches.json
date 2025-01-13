@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "brand": "Apple",
+    "model": "Apple Watch Series 9",
+    "price": 399,
+    "features": [
+      "Heart Rate Monitor",
+      "GPS",
+      "Blood Oxygen Sensor",
+      "Always-On Retina Display"
+    ],
+    "waterResistant": true,
+    "batteryLife": "18 hours"
+  },
+  {
+    "id": 2,
+    "brand": "Samsung",
+    "model": "Galaxy Watch 6",
+    "price": 349,
+    "features": [
+      "ECG Monitoring",
+      "Sleep Tracking",
+      "Blood Pressure Monitor",
+      "Customizable Watch Faces"
+    ],
+    "waterResistant": true,
+    "batteryLife": "40 hours"
+  },
+  {
+    "id": 3,
+    "brand": "Garmin",
+    "model": "Garmin Venu 2",
+    "price": 399,
+    "features": [
+      "Pulse Ox Sensor",
+      "Fitness Tracking",
+      "Music Storage",
+      "Advanced Sleep Monitoring"
+    ],
+    "waterResistant": true,
+    "batteryLife": "11 days"
+  },
+  {
+    "id": 4,
+    "brand": "Fitbit",
+    "model": "Fitbit Versa 4",
+    "price": 229,
+    "features": [
+      "Heart Rate Tracking",
+      "Step Counter",
+      "Active Zone Minutes",
+      "Smart Notifications"
+    ],
+    "waterResistant": true,
+    "batteryLife": "6 days"
+  },
+  {
+    "id": 5,
+    "brand": "Amazfit",
+    "model": "GTR 4",
+    "price": 199,
+    "features": [
+      "Dual-Band GPS",
+      "Alexa Built-In",
+      "Blood Oxygen Saturation",
+      "Workout Recognition"
+    ],
+    "waterResistant": true,
+    "batteryLife": "14 days"
+  }
+]
