@@ -14,6 +14,7 @@ const saveCartToList = (cart) => {
 const addToList = (id) => {
   const cart = getStoredCart();
   cart.push(id);
+  saveCartToList(cart);
 };
 
 export { addToList, getStoredCart };
