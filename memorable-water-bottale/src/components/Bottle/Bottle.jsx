@@ -1,7 +1,7 @@
 import "./Bottle.css";
 const Bottle = ({ bottle, handleAddToCart }) => {
   const { name, img, price } = bottle;
-  console.log(bottle);
+  //   console.log(bottle);
 
   return (
     <div className="battle">
