@@ -1,5 +1,3 @@
-import React from "react";
-
 const Bookmarks = () => {
   return (
     <div className="md:1/3">
