@@ -13,7 +13,7 @@ function App() {
     setBookmarks(newBookmarks);
   };
 
-  const handleMarkAsRead = (time) => {
+  const handleMarkAsRead = (id, time) => {
     const newReadingTime = readingTime + time;
     setReading(newReadingTime);
   };
