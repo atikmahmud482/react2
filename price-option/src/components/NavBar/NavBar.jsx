@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Link from "../Link/Link";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+// import { AiOutlineJavaScript } from "react-icons/ai";
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
