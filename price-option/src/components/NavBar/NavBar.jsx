@@ -3,6 +3,7 @@ import Link from "../Link/Link";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 // import { AiOutlineJavaScript } from "react-icons/ai";
 // import { MdOutlineScreenSearchDesktop } from "react-icons/md";
+// import { MdOutlineCropRotate } from "react-icons/md";
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
