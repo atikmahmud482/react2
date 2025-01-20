@@ -1,4 +1,3 @@
-import React from "react";
 import PriceOption from "../priceOptionn/PriceOption";
 
 const PriceOptions = () => {
@@ -39,28 +38,16 @@ const PriceOptions = () => {
         "1 personal training session per month",
       ],
     },
-    {
-      id: 4,
-      name: "VIP Plan",
-      price: 100,
-      currency: "USD",
-      features: [
-        "Access to gym equipment",
-        "Private locker",
-        "Unlimited access 24/7",
-        "Unlimited group classes",
-        "Weekly personal training sessions",
-        "Access to sauna and spa",
-      ],
-    },
   ];
 
   return (
-    <div>
+    <div className="m-12 mb-3">
       <h2 className="text-5xl">best prices in the town</h2>
-      {priceOptions.map((option) => (
-        <PriceOption key={option.id} option={option}></PriceOption>
-      ))}
+      <div className="grid grid-cols-3 gap-6 mt-5">
+        {priceOptions.map((option) => (
+          <PriceOption key={option.id} option={option}></PriceOption>
+        ))}
+      </div>
     </div>
   );
 };
