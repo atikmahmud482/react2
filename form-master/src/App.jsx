@@ -6,9 +6,10 @@ import StateFullForm from "./components/StateFullForm/StateFullForm";
 function App() {
   return (
     <>
+      <SimpleForm></SimpleForm>
       {/* <SimpleForm></SimpleForm> */}
       {/* <StateFullForm></StateFullForm> */}
-      <RefFrom></RefFrom>
+      {/* <RefFrom></RefFrom> */}
     </>
   );
 }
