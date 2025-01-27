@@ -1,7 +1,7 @@
 import "./App.css";
-import RefFrom from "./components/RefForm/RefFrom";
+// import RefFrom from "./components/RefForm/RefFrom";
 import SimpleForm from "./components/SimpleForm/SimpleForm";
-import StateFullForm from "./components/StateFullForm/StateFullForm";
+// import StateFullForm from "./components/StateFullForm/StateFullForm";
 
 function App() {
   return (
