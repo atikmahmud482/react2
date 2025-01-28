@@ -6,6 +6,7 @@ import "./GrandPa.css";
 const GrandPa = () => {
   return (
     <div className="grandpa">
+      <h2 className="grandpa">Grandpa</h2>
       <section className="flex">
         <Dad></Dad>
         <Uncle></Uncle>
