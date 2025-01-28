@@ -1,0 +1,7 @@
+.big-bold-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold; /* Makes the text bold */
+  font-size: 3rem; /* Makes the text big (adjust the size as needed) */
+}
