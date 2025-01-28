@@ -20,4 +20,7 @@ export default GrandPa;
 
 /*
  *1: Create a Context Api.
+  2: Add provider for the context with a value.
+  3: UseContext to access value in the context api.
  */
+// module 46-8 done.
