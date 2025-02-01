@@ -7,6 +7,7 @@ import Home from "./components/Home/Home"; // Another component for the Home pag
 import "./index.css";
 import Errorpage from "./components/Errorpage/Errorpage";
 import Dashboard from "./components/Dashboard/Dashboard";
+import BookDetails from "./components/BookDetails/BookDetails";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -22,6 +23,9 @@ root.render(
         >
           {/* Nested Routes under the Root route */}
           <Route path="/" element={<Home />} /> {/* Home page */}
+          <Route
+            path="books/:bookId"
+            element={<BookDetails></BookDetails>}></Route>
           <Route path="dashboard" element={<Dashboard />} />{" "}
           {/* Dashboard page */}
         </Route>
