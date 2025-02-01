@@ -25,6 +25,7 @@ root.render(
           <Route path="dashboard" element={<Dashboard />} />{" "}
           {/* Dashboard page */}
         </Route>
+        <Route path="*" element={<Errorpage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
