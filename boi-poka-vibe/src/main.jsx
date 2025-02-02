@@ -8,12 +8,6 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import BookDetails from "./components/BookDetails/BookDetails";
 import "./index.css";
 
-async function bookDetailsLoader({ params }) {
-  const response = await fetch("/booksData.json");
-  const data = await response.json();
-  return data.find((book) => book.id === params.bookId); // Match bookId
-}
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,7 +19,7 @@ const router = createBrowserRouter([
       {
         path: "books/:bookId",
         element: <BookDetails />,
-        loader: bookDetailsLoader,
+        loader: () => fetch("./booksData.json"),
       },
     ],
   },
