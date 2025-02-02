@@ -1,4 +1,5 @@
 import { useLoaderData, useParams } from "react-router-dom";
+import { addToStoredReadList } from "../../utility/addToDb";
 
 const BookDetails = () => {
   const { bookId } = useParams();
@@ -16,7 +17,7 @@ const BookDetails = () => {
     image,
   } = book;
 
-  const handleMarkAsRead = () => {
+  const handleMarkAsRead = (id) => {
     /* 
     1.understand what to store of save: =>boolId
     2.where to store: database
@@ -25,6 +26,7 @@ const BookDetails = () => {
     5.if not, then add the book to the list
     6.if yes, do not add the book
     */
+    addToStoredReadList(id);
   };
 
   return (
@@ -39,7 +41,7 @@ const BookDetails = () => {
           <div className="border-t-2 border-dashed"></div>
           <p className="py-6">{review}</p>
           <button
-            onClick={handleMarkAsRead}
+            onClick={() => handleMarkAsRead(bookId)}
             className="mr-4 btn btn-soft btn-primary">
             Mark as Read
           </button>
