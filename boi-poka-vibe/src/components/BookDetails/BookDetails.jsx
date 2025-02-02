@@ -15,6 +15,18 @@ const BookDetails = () => {
     author,
     image,
   } = book;
+
+  const handleMarkAsRead = () => {
+    /* 
+    1.understand what to store of save: =>boolId
+    2.where to store: database
+    3.array, list, collection: 
+    4.check: if the book is already in the readList.
+    5.if not, then add the book to the list
+    6.if yes, do not add the book
+    */
+  };
+
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row">
@@ -26,8 +38,12 @@ const BookDetails = () => {
           <h1 className="text-xl font-bold">{category}</h1>
           <div className="border-t-2 border-dashed"></div>
           <p className="py-6">{review}</p>
-          <button className="mr-4 btn btn-soft btn-primary">Read</button>
-          <button className="btn btn-primary">WishList</button>
+          <button
+            onClick={handleMarkAsRead}
+            className="mr-4 btn btn-soft btn-primary">
+            Mark as Read
+          </button>
+          <button className="btn btn-primary">Add To Wish List</button>
         </div>
       </div>
     </div>
