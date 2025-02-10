@@ -1,10 +1,17 @@
-import { GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import auth from "../firebase.init";
 
 const Login = () => {
-  const Provider = new GoogleAuthProvider();
+  const provider = new GoogleAuthProvider();
 
   const handleGoogleSignIn = () => {
-    console.log("Google Call");
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
   };
   return (
     <div>
