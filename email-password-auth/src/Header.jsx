@@ -1,7 +1,6 @@
 import React from "react";
-import Header from "./Header";
 
-const Home = () => {
+const Header = () => {
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -75,4 +74,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Header;

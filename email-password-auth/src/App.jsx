@@ -1,9 +1,13 @@
+import { Router, Routes } from "react-router-dom";
 import "./App.css";
+import Home from "./Home";
 
 function App() {
   return (
     <>
-      <h1>Vite + React</h1>
+      {/* <Router>
+        <Routes path="/home" element={<Home></Home>}></Routes>
+      </Router> */}
     </>
   );
 }
