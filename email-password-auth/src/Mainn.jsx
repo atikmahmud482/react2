@@ -6,7 +6,7 @@ import Home from "./Home";
 const Mainn = () => {
   return (
     <div>
-      <Home></Home>
+      <Header></Header>
       <Outlet></Outlet>
     </div>
   );
