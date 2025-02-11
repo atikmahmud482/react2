@@ -57,3 +57,5 @@ function App() {
 }
 
 export default App;
+
+// Video 49-8 module summary.
