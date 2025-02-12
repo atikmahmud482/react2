@@ -1,8 +1,20 @@
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase.init";
+
 const Register = () => {
   const handleSubmitRegister = (event) => {
     event.preventDefault();
-    console.log(event.target.email.value);
-    console.log(event.target.pass.value);
+    const email = event.target.email.value;
+    const password = event.target.pass.value;
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
   };
   return (
     <div className="min-h-screen flex justify-center items-center">
@@ -13,7 +25,7 @@ const Register = () => {
         {/* Form */}
         <form onSubmit={handleSubmitRegister} className="flex flex-col gap-4">
           {/* Email Input */}
-          <label className="input validator">
+          <label className="input validator w-60">
             <svg
               className="h-[1em] opacity-50"
               xmlns="http://www.w3.org/2000/svg"
@@ -35,6 +47,7 @@ const Register = () => {
               required
             />
           </label>
+          <div className="validator-hint hidden">Enter valid email address</div>
 
           {/* Password Input */}
           <label className="input validator">
@@ -62,6 +75,15 @@ const Register = () => {
               title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
             />
           </label>
+          <p className="validator-hint hidden">
+            Must be more than 8 characters, including
+            <br />
+            At least one number
+            <br />
+            At least one lowercase letter
+            <br />
+            At least one uppercase letter
+          </p>
 
           {/* Submit Button */}
           <button
