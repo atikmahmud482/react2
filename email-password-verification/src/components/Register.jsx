@@ -1,4 +1,9 @@
 const Register = () => {
+  const handleSubmitRegister = (event) => {
+    event.preventDefault();
+    console.log(event.target.email.value);
+    console.log(event.target.pass.value);
+  };
   return (
     <div className="min-h-screen flex justify-center items-center">
       <div className="flex flex-col gap-4">
@@ -6,7 +11,7 @@ const Register = () => {
         <h1 className="text-2xl font-bold text-center mb-4">Register</h1>
 
         {/* Form */}
-        <form className="flex flex-col gap-4">
+        <form onSubmit={handleSubmitRegister} className="flex flex-col gap-4">
           {/* Email Input */}
           <label className="input validator">
             <svg
@@ -23,7 +28,12 @@ const Register = () => {
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
               </g>
             </svg>
-            <input type="email" placeholder="mail@site.com" required />
+            <input
+              type="email"
+              name="email"
+              placeholder="mail@site.com"
+              required
+            />
           </label>
 
           {/* Password Input */}
@@ -44,6 +54,7 @@ const Register = () => {
             </svg>
             <input
               type="password"
+              name="pass"
               required
               placeholder="Password"
               minLength="8"
