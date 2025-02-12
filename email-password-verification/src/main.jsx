@@ -6,6 +6,7 @@ import Main from "./layout/Main.jsx";
 import Home from "./components/Home.jsx";
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
+import Register2 from "./components/Register2.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -15,6 +16,7 @@ createRoot(document.getElementById("root")).render(
         <Route index element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="register2" element={<Register2 />} />
       </Route>
     </Routes>
   </BrowserRouter>
