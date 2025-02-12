@@ -1,12 +1,13 @@
 const Register = () => {
   return (
-    <div className=" flex justify-center items-center">
+    <div className="min-h-screen flex justify-center items-center">
       <div className="flex flex-col gap-4">
         {/* Heading */}
-        <h1 className="text-2xl font-bold text-center mb-4">Register</h1>{" "}
-        {/* Added heading */}
-        {/* Email Input */}
-        <form>
+        <h1 className="text-2xl font-bold text-center mb-4">Register</h1>
+
+        {/* Form */}
+        <form className="flex flex-col gap-4">
+          {/* Email Input */}
           <label className="input validator">
             <svg
               className="h-[1em] opacity-50"
@@ -24,6 +25,7 @@ const Register = () => {
             </svg>
             <input type="email" placeholder="mail@site.com" required />
           </label>
+
           {/* Password Input */}
           <label className="input validator">
             <svg
@@ -49,7 +51,14 @@ const Register = () => {
               title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
             />
           </label>
-          <button className="btn btn-primary">Login</button>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="btn btn-primary w-full mt-4" // Added width and margin-top
+          >
+            Register
+          </button>
         </form>
       </div>
     </div>
