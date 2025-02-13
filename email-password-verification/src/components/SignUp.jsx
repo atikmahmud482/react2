@@ -1,4 +1,7 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 import { auth } from "../firebase.init";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
@@ -9,10 +12,9 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const [agreeToTerms, setAgreeToTerms] = useState(false); // State for Terms and Conditions checkbox
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
 
-    // Check if the user agreed to the Terms and Conditions
     if (!agreeToTerms) {
       setErrorMessage("You must agree to the Terms and Conditions.");
       return;
@@ -21,19 +23,26 @@ const SignUp = () => {
     const email = e.target.email.value;
     const password = e.target.pass.value;
 
-    // Clear previous messages
     setErrorMessage("");
     setSuccessMessage("");
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((result) => {
-        console.log(result.user); // Successfully signed up
-        setSuccessMessage("User created successfully!"); // Set success message
-      })
-      .catch((error) => {
-        console.log("Error", error.message); // Corrected typo: error.message
-        setErrorMessage(error.message); // Set error message for display
-      });
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      // Send email verification
+      await sendEmailVerification(user);
+      setSuccessMessage(
+        "User created successfully! Please check your email to verify your account."
+      );
+    } catch (error) {
+      console.error("Error", error.message);
+      setErrorMessage(error.message);
+    }
   };
 
   return (
@@ -66,24 +75,22 @@ const SignUp = () => {
                   </label>
                   <div className="relative">
                     <input
-                      type={showPassword ? "text" : "password"} // Toggle input type
+                      type={showPassword ? "text" : "password"}
                       id="password"
                       name="pass"
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                      className="input input-bordered w-full pr-10" // Add padding for icon
+                      className="input input-bordered w-full pr-10"
                       placeholder="Password"
                       required
                     />
-                    {/* Toggle Password Visibility Button */}
                     <button
                       type="button"
                       className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
-                      onClick={() => setShowPassword(!showPassword)} // Toggle state
-                    >
+                      onClick={() => setShowPassword(!showPassword)}>
                       {showPassword ? (
-                        <FaEyeSlash className="h-5 w-5 text-gray-500" /> // Eye-slash icon
+                        <FaEyeSlash className="h-5 w-5 text-gray-500" />
                       ) : (
-                        <FaEye className="h-5 w-5 text-gray-500" /> // Eye icon
+                        <FaEye className="h-5 w-5 text-gray-500" />
                       )}
                     </button>
                   </div>
@@ -96,12 +103,12 @@ const SignUp = () => {
                       name="terms"
                       className="checkbox checkbox-sm"
                       checked={agreeToTerms}
-                      onChange={(e) => setAgreeToTerms(e.target.checked)} // Update state
+                      onChange={(e) => setAgreeToTerms(e.target.checked)}
                     />
                     <label htmlFor="terms" className="ml-2 text-sm">
                       I agree to the{" "}
                       <a
-                        href="/terms" // Replace with your actual Terms and Conditions link
+                        href="/terms"
                         className="link link-primary"
                         target="_blank"
                         rel="noopener noreferrer">
@@ -129,8 +136,7 @@ const SignUp = () => {
                   <button
                     type="submit"
                     className="btn btn-neutral mt-4 w-full"
-                    disabled={!agreeToTerms} // Disable button if checkbox is not checked
-                  >
+                    disabled={!agreeToTerms}>
                     Sign Up
                   </button>
 

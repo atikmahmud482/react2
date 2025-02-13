@@ -1,33 +1,50 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
 import { auth } from "../firebase.init";
 import { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
-import { Link } from "react-router-dom"; // For navigation
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [showPassword, setShowPassword] = useState(false);
+  const [resetEmailSent, setResetEmailSent] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
-
     const email = e.target.email.value;
     const password = e.target.pass.value;
 
-    // Clear previous messages
     setErrorMessage("");
     setSuccessMessage("");
 
     signInWithEmailAndPassword(auth, email, password)
       .then((result) => {
-        console.log(result.user); // Successfully logged in
-        setSuccessMessage("Login successful!"); // Set success message
+        console.log(result.user);
+        setSuccessMessage("Login successful!");
       })
       .catch((error) => {
-        console.log("Error", error.message); // Handle errors
-        setErrorMessage(error.message); // Set error message for display
+        console.log("Error", error.message);
+        setErrorMessage(error.message);
       });
+  };
+
+  // Handle Password Reset
+  const handleForgotPassword = async () => {
+    const email = prompt("Enter your email to reset your password:");
+    if (!email) return; // Exit if no email is entered
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+      setResetEmailSent(true);
+      setSuccessMessage("Password reset email sent! Check your inbox.");
+    } catch (error) {
+      console.error("Error:", error.message);
+      setErrorMessage(error.message);
+    }
   };
 
   return (
@@ -38,9 +55,8 @@ const Login = () => {
             <div className="text-center lg:text-left">
               <h1 className="text-5xl font-bold">Login now!</h1>
               <p className="py-6">
-                Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                assumenda excepturi exercitationem quasi. In deleniti eaque aut
-                repudiandae et a id nisi.
+                Securely log in to your account. If you forgot your password,
+                you can reset it below.
               </p>
             </div>
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
@@ -65,30 +81,33 @@ const Login = () => {
                   </label>
                   <div className="relative">
                     <input
-                      type={showPassword ? "text" : "password"} // Toggle input type
+                      type={showPassword ? "text" : "password"}
                       id="password"
                       name="pass"
-                      className="input input-bordered w-full pr-10" // Add padding for icon
+                      className="input input-bordered w-full pr-10"
                       placeholder="Password"
                       required
                     />
-                    {/* Toggle Password Visibility Button */}
                     <button
                       type="button"
                       className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
-                      onClick={() => setShowPassword(!showPassword)} // Toggle state
-                    >
+                      onClick={() => setShowPassword(!showPassword)}>
                       {showPassword ? (
-                        <FaEyeSlash className="h-5 w-5 text-gray-500" /> // Eye-slash icon
+                        <FaEyeSlash className="h-5 w-5 text-gray-500" />
                       ) : (
-                        <FaEye className="h-5 w-5 text-gray-500" /> // Eye icon
+                        <FaEye className="h-5 w-5 text-gray-500" />
                       )}
                     </button>
                   </div>
 
-                  {/* Forgot Password Link */}
+                  {/* Forgot Password Button */}
                   <div className="mt-2">
-                    <a className="link link-hover">Forgot password?</a>
+                    <button
+                      type="button"
+                      className="link link-hover text-blue-500"
+                      onClick={handleForgotPassword}>
+                      Forgot password?
+                    </button>
                   </div>
 
                   {/* Login Button */}
