@@ -110,6 +110,16 @@ const SignUp = () => {
                     </label>
                   </div>
 
+                  {/* Already have an account? Login */}
+                  <div className="mt-2">
+                    <p>
+                      Already have an account?{" "}
+                      <a href="/login" className="link link-primary">
+                        Log in
+                      </a>
+                    </p>
+                  </div>
+
                   {/* Forgot Password Link */}
                   <div className="mt-2">
                     <a className="link link-hover">Forgot password?</a>
