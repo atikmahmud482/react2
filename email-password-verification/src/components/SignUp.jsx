@@ -58,6 +58,7 @@ const SignUp = () => {
                     type="password"
                     id="password"
                     name="pass"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                     className="input input-bordered w-full"
                     placeholder="Password"
                     required
