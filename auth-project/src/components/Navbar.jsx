@@ -4,11 +4,11 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100 shadow-sm px-4">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl">Auth Project</a>
       </div>
 
       {/* Navigation Links */}
-      <div className="flex gap-4">
+      <div className="flex gap-4 px-4">
         <NavLink
           to="/"
           className={({ isActive }) =>
@@ -34,11 +34,11 @@ const Navbar = () => {
 
       {/* Search & Profile Section */}
       <div className="flex items-center gap-2">
-        <input
+        {/* <input
           type="text"
           placeholder="Search"
           className="input input-bordered w-24 md:w-auto"
-        />
+        /> */}
 
         {/* Profile Dropdown */}
         <div className="dropdown dropdown-end">
