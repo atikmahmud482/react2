@@ -1,10 +1,12 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase.init";
 import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
 
 const SignUp = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -54,15 +56,29 @@ const SignUp = () => {
                   <label htmlFor="password" className="fieldset-label">
                     Password
                   </label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="pass"
-                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                    className="input input-bordered w-full"
-                    placeholder="Password"
-                    required
-                  />
+                  <div className="relative">
+                    <input
+                      type={showPassword ? "text" : "password"} // Toggle input type
+                      id="password"
+                      name="pass"
+                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                      className="input input-bordered w-full pr-10" // Add padding for icon
+                      placeholder="Password"
+                      required
+                    />
+                    {/* Toggle Password Visibility Button */}
+                    <button
+                      type="button"
+                      className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
+                      onClick={() => setShowPassword(!showPassword)} // Toggle state
+                    >
+                      {showPassword ? (
+                        <FaEyeSlash className="h-5 w-5 text-gray-500" /> // Eye-slash icon
+                      ) : (
+                        <FaEye className="h-5 w-5 text-gray-500" /> // Eye icon
+                      )}
+                    </button>
+                  </div>
 
                   {/* Forgot Password Link */}
                   <div className="mt-2">
