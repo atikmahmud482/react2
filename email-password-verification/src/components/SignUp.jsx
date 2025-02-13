@@ -4,16 +4,21 @@ import { useState } from "react";
 
 const SignUp = () => {
   const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleSignUp = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.pass.value;
 
+    // Clear previous messages
+    setErrorMessage("");
+    setSuccessMessage("");
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
         console.log(result.user); // Successfully signed up
-        setErrorMessage(""); // Clear any previous error messages
+        setSuccessMessage("User created successfully!"); // Set success message
       })
       .catch((error) => {
         console.log("Error", error.message); // Corrected typo: error.message
@@ -67,6 +72,13 @@ const SignUp = () => {
                   <button type="submit" className="btn btn-neutral mt-4 w-full">
                     Sign Up
                   </button>
+
+                  {/* Success Message Display */}
+                  {successMessage && (
+                    <div className="mt-4 text-center">
+                      <p className="text-green-600">{successMessage}</p>
+                    </div>
+                  )}
 
                   {/* Error Message Display */}
                   {errorMessage && (
