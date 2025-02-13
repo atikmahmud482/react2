@@ -1,7 +1,9 @@
+import { Outlet } from "react-router-dom";
+
 const Root = () => {
   return (
     <div>
-      <h2>fkdsjsdkf</h2>
+      <Outlet /> {/* This will load Home or other child routes */}
     </div>
   );
 };
