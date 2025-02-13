@@ -7,9 +7,17 @@ const SignUp = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [agreeToTerms, setAgreeToTerms] = useState(false); // State for Terms and Conditions checkbox
 
   const handleSignUp = (e) => {
     e.preventDefault();
+
+    // Check if the user agreed to the Terms and Conditions
+    if (!agreeToTerms) {
+      setErrorMessage("You must agree to the Terms and Conditions.");
+      return;
+    }
+
     const email = e.target.email.value;
     const password = e.target.pass.value;
 
@@ -80,13 +88,39 @@ const SignUp = () => {
                     </button>
                   </div>
 
+                  {/* Terms and Conditions Checkbox */}
+                  <div className="mt-4 flex items-center">
+                    <input
+                      type="checkbox"
+                      id="terms"
+                      name="terms"
+                      className="checkbox checkbox-sm"
+                      checked={agreeToTerms}
+                      onChange={(e) => setAgreeToTerms(e.target.checked)} // Update state
+                    />
+                    <label htmlFor="terms" className="ml-2 text-sm">
+                      I agree to the{" "}
+                      <a
+                        href="/terms" // Replace with your actual Terms and Conditions link
+                        className="link link-primary"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Terms and Conditions
+                      </a>
+                    </label>
+                  </div>
+
                   {/* Forgot Password Link */}
                   <div className="mt-2">
                     <a className="link link-hover">Forgot password?</a>
                   </div>
 
                   {/* Sign Up Button */}
-                  <button type="submit" className="btn btn-neutral mt-4 w-full">
+                  <button
+                    type="submit"
+                    className="btn btn-neutral mt-4 w-full"
+                    disabled={!agreeToTerms} // Disable button if checkbox is not checked
+                  >
                     Sign Up
                   </button>
 
