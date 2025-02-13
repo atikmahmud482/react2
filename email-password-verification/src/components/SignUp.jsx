@@ -1,16 +1,18 @@
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase.init";
 import { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignUp = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
-  const [agreeToTerms, setAgreeToTerms] = useState(false); // State for Terms and Conditions checkbox
+  const [showPassword, setShowPassword] = useState(false);
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
+  const [photoURL, setPhotoURL] = useState("");
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -22,6 +24,7 @@ const SignUp = () => {
 
     const email = e.target.email.value;
     const password = e.target.pass.value;
+    const displayName = e.target.name.value;
 
     setErrorMessage("");
     setSuccessMessage("");
@@ -33,6 +36,12 @@ const SignUp = () => {
         password
       );
       const user = userCredential.user;
+
+      // Update user profile
+      await updateProfile(user, {
+        displayName,
+        photoURL,
+      });
 
       // Send email verification
       await sendEmailVerification(user);
@@ -56,6 +65,19 @@ const SignUp = () => {
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
               <div className="card-body">
                 <fieldset className="fieldset">
+                  {/* Name Input */}
+                  <label htmlFor="name" className="fieldset-label">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    className="input input-bordered w-full"
+                    placeholder="Full Name"
+                    required
+                  />
+
                   {/* Email Input */}
                   <label htmlFor="email" className="fieldset-label">
                     Email
@@ -95,6 +117,19 @@ const SignUp = () => {
                     </button>
                   </div>
 
+                  {/* Profile Picture URL Input */}
+                  <label htmlFor="photoURL" className="fieldset-label">
+                    Profile Picture URL
+                  </label>
+                  <input
+                    type="text"
+                    id="photoURL"
+                    name="photoURL"
+                    className="input input-bordered w-full"
+                    placeholder="Photo URL (optional)"
+                    onChange={(e) => setPhotoURL(e.target.value)}
+                  />
+
                   {/* Terms and Conditions Checkbox */}
                   <div className="mt-4 flex items-center">
                     <input
@@ -115,21 +150,6 @@ const SignUp = () => {
                         Terms and Conditions
                       </a>
                     </label>
-                  </div>
-
-                  {/* Already have an account? Login */}
-                  <div className="mt-2">
-                    <p>
-                      Already have an account?{" "}
-                      <a href="/login" className="link link-primary">
-                        Log in
-                      </a>
-                    </p>
-                  </div>
-
-                  {/* Forgot Password Link */}
-                  <div className="mt-2">
-                    <a className="link link-hover">Forgot password?</a>
                   </div>
 
                   {/* Sign Up Button */}
