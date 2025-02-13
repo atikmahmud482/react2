@@ -5,7 +5,7 @@ import Root from "./components/Root.jsx";
 import Home from "./components/Home.jsx";
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
-import AuthProvider from "./context/AuthProvider"; // Import the AuthProvider
+import { AuthProvider } from "./providers/AuthProvider.jsx"; // Import AuthProvider
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -14,7 +14,7 @@ createRoot(document.getElementById("root")).render(
       {/* Wrap your routes with AuthProvider */}
       <Routes>
         <Route path="/" element={<Root />}>
-          <Route index element={<Home />} /> {/* Default route inside Root */}
+          <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
         </Route>

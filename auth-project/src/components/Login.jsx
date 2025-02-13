@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAuth } from "../context/AuthProvider"; // Import useAuth hook
+import { useAuth } from "../providers/AuthProvider"; // Import useAuth hook
 
 const Login = () => {
   const { login } = useAuth(); // Get login function from context

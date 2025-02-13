@@ -1,34 +1,19 @@
-import React, { createContext, useState, useContext } from "react";
+import { createContext, useState } from "react";
 
 // Create Context
-const AuthContext = createContext();
+const AuthContext = createContext(null);
 
-// Create a custom hook to use the AuthContext
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
-
-// AuthProvider component that will wrap your application
+// AuthProvider component to provide authentication info
 const AuthProvider = ({ children }) => {
-  // Authentication state
-  const [user, setUser] = useState(null);
-
-  // Login function
-  const login = (email, password) => {
-    // Here, you could add logic to authenticate (e.g., call an API)
-    setUser({ email, password }); // For now, just setting the user
-  };
-
-  // Logout function
-  const logout = () => {
-    setUser(null); // Remove user on logout
-  };
+  // Example state for authentication info
+  const [authInfo, setAuthInfo] = useState({
+    name: "kfdklfdljks",
+    // Add other info like email, isAuthenticated, etc.
+  });
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
 };
 
-export default AuthProvider;
+export { AuthProvider, AuthContext };
