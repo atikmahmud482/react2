@@ -8,3 +8,5 @@ const ProtectedRoute = ({ children }) => {
 };
 
 export default ProtectedRoute;
+
+// video 51-7 Implement Privet Route and Auth Loader
