@@ -5,13 +5,13 @@ import Root from "./components/Root.jsx";
 import Home from "./components/Home.jsx";
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
-import { AuthProvider } from "./providers/AuthProvider.jsx"; // Import AuthProvider
+import AuthProvider from "./providers/AuthProvider"; // Import AuthProvider
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <AuthProvider>
       {" "}
-      {/* Wrap your routes with AuthProvider */}
+      {/* Wrap the entire app */}
       <Routes>
         <Route path="/" element={<Root />}>
           <Route index element={<Home />} />

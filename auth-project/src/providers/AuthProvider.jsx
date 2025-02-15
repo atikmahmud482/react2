@@ -1,19 +1,27 @@
-import { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react"; // Import required hooks
 
-// Create Context
 const AuthContext = createContext(null);
 
-// AuthProvider component to provide authentication info
+// Custom hook to use the auth context
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
+
+// AuthProvider component
 const AuthProvider = ({ children }) => {
-  // Example state for authentication info
-  const [authInfo, setAuthInfo] = useState({
-    name: "kfdklfdljks",
-    // Add other info like email, isAuthenticated, etc.
-  });
+  const [user, setUser] = useState(null);
+
+  // Login function
+  const login = (email, password) => {
+    setUser({ email });
+    console.log("User logged in:", email);
+  };
 
   return (
-    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, login }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 
-export { AuthProvider, AuthContext };
+export default AuthProvider;

@@ -9,7 +9,6 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     login(email, password); // Call login function from context
-    console.log("Logged in:", email);
   };
 
   return (
@@ -27,7 +26,6 @@ const Login = () => {
                   <label className="fieldset-label">Email</label>
                   <input
                     type="email"
-                    name="email"
                     className="input"
                     placeholder="Email"
                     value={email}
@@ -37,7 +35,6 @@ const Login = () => {
                   <label className="fieldset-label">Password</label>
                   <input
                     type="password"
-                    name="pass"
                     className="input"
                     placeholder="Password"
                     value={password}
