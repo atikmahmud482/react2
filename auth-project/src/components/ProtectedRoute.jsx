@@ -11,3 +11,12 @@ export default ProtectedRoute;
 
 // video 51-7 Implement Privet Route and Auth Loader
 // video 51-8 Reset Form and Social Login With Auth Provider.
+
+/* Module 52-1
+* What is FireBase
+* firebase SDK (Software Development Kit)
+* Firebase Authentication 
+
+
+
+*/
