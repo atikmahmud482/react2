@@ -1,81 +1,59 @@
+import { useState } from "react";
+import { useAuth } from "../providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
+
 const Register = () => {
-  const handleRegister = (e) => {
+  const { register } = useAuth();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleRegister = async (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
-    const email = e.target.email.value;
-    const pass = e.target.pass.value;
-    console.log(name, email, pass);
+    try {
+      await register(email, password);
+      navigate("/"); // Redirect after successful registration
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
-    <div>
-      <form onSubmit={handleRegister}>
-        <div className="hero bg-base-200 min-h-screen">
-          <div className="hero-content flex-col lg:flex-row-reverse">
-            <div className="text-center lg:text-left">
-              <h1 className="text-5xl font-bold">Register</h1>
-              <p className="py-6">
-                Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                assumenda excepturi exercitationem quasi. In deleniti eaque aut
-                repudiandae et a id nisi.
-              </p>
-            </div>
-            <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-              <div className="card-body">
-                <fieldset className="fieldset">
-                  {/* Name Field */}
-                  <label className="fieldset-label">Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    className="input"
-                    placeholder="Full Name"
-                    required
-                  />
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
+        <h2 className="text-2xl font-bold text-center mb-4 text-black">
+          Register
+        </h2>
+        {error && <p className="text-red-500 text-sm text-center">{error}</p>}
 
-                  {/* Email Field */}
-                  <label className="fieldset-label">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    className="input"
-                    placeholder="Email"
-                    required
-                  />
+        <form onSubmit={handleRegister} className="space-y-4">
+          <input
+            type="email"
+            placeholder="Email"
+            className="input input-bordered w-full"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            className="input input-bordered w-full"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button className="btn btn-neutral w-full">Register</button>
+        </form>
 
-                  {/* Password Field */}
-                  <label className="fieldset-label">Password</label>
-                  <input
-                    type="password"
-                    name="pass"
-                    className="input"
-                    placeholder="Password"
-                    required
-                  />
-
-                  {/* Forgot Password Link */}
-                  <div>
-                    <a className="link link-hover">Forgot password?</a>
-                  </div>
-
-                  {/* Register Button */}
-                  <button className="btn btn-neutral mt-4">Register</button>
-                </fieldset>
-
-                {/* "Already have an account?" Section */}
-                <div className="mt-4 text-center">
-                  <p>
-                    Already have an account? Please{" "}
-                    <a href="/login" className="text-blue-500 font-semibold">
-                      Login
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
+        <p className="text-center text-black mt-4">
+          Already have an account?{" "}
+          <a href="/login" className="text-blue-500 font-semibold">
+            Login
+          </a>
+        </p>
+      </div>
     </div>
   );
 };

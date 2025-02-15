@@ -8,10 +8,10 @@ import Register from "./components/Register.jsx";
 import AuthProvider from "./providers/AuthProvider"; // Import AuthProvider
 
 createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <AuthProvider>
-      {" "}
-      {/* Wrap the entire app */}
+  <AuthProvider>
+    {" "}
+    {/* Wrap the entire app */}
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Root />}>
           <Route index element={<Home />} />
@@ -19,6 +19,6 @@ createRoot(document.getElementById("root")).render(
           <Route path="register" element={<Register />} />
         </Route>
       </Routes>
-    </AuthProvider>
-  </BrowserRouter>
+    </BrowserRouter>
+  </AuthProvider>
 );
