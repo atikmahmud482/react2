@@ -7,9 +7,7 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100 shadow-sm px-4">
       <div className="flex-1">
-        <NavLink to="/" className="text-xl">
-          Auth Project
-        </NavLink>
+        <a className="btn btn-ghost text-xl">Auth Project</a>
       </div>
 
       <div className="flex gap-4 px-4">
@@ -20,15 +18,7 @@ const Navbar = () => {
           }>
           Home
         </NavLink>
-
-        {user ? (
-          <>
-            <span className="text-gray-700">{user.email}</span>
-            <button onClick={logout} className="btn btn-sm btn-neutral">
-              Logout
-            </button>
-          </>
-        ) : (
+        {!user ? (
           <>
             <NavLink
               to="/login"
@@ -45,6 +35,10 @@ const Navbar = () => {
               Register
             </NavLink>
           </>
+        ) : (
+          <button onClick={logout} className="btn btn-error">
+            Logout
+          </button>
         )}
       </div>
     </div>

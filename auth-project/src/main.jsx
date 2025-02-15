@@ -6,19 +6,26 @@ import Home from "./components/Home.jsx";
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
 import AuthProvider from "./providers/AuthProvider"; // Import AuthProvider
+import ProtectedRoute from "./components/ProtectedRoute"; // Import ProtectedRoute
 
 createRoot(document.getElementById("root")).render(
-  <AuthProvider>
-    {" "}
-    {/* Wrap the entire app */}
-    <BrowserRouter>
+  <BrowserRouter>
+    <AuthProvider>
       <Routes>
         <Route path="/" element={<Root />}>
-          <Route index element={<Home />} />
+          {/* Home is now protected */}
+          <Route
+            index
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
         </Route>
       </Routes>
-    </BrowserRouter>
-  </AuthProvider>
+    </AuthProvider>
+  </BrowserRouter>
 );
