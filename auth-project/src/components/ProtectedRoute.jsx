@@ -10,3 +10,4 @@ const ProtectedRoute = ({ children }) => {
 export default ProtectedRoute;
 
 // video 51-7 Implement Privet Route and Auth Loader
+// video 51-8 Reset Form and Social Login With Auth Provider.
