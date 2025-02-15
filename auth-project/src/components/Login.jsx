@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAuth } from "../providers/AuthProvider"; // Import useAuth hook
 
 const Login = () => {
@@ -42,6 +42,13 @@ const Login = () => {
                     required
                   />
                   <button className="btn btn-neutral mt-4">Login</button>
+
+                  <p>
+                    Already have not an account? Please{" "}
+                    <a href="/register" className="text-blue-500 font-semibold">
+                      Register
+                    </a>
+                  </p>
                 </fieldset>
               </div>
             </div>

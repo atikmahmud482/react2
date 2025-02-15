@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react"; // Import required hooks
+import { createContext, useContext, useState } from "react"; // Import required hooks
 
 const AuthContext = createContext(null);
 
