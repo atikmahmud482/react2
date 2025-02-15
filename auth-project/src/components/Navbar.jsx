@@ -18,6 +18,7 @@ const Navbar = () => {
           }>
           Home
         </NavLink>
+
         {!user ? (
           <>
             <NavLink
@@ -36,9 +37,13 @@ const Navbar = () => {
             </NavLink>
           </>
         ) : (
-          <button onClick={logout} className="btn btn-error">
-            Logout
-          </button>
+          <div className="flex items-center gap-2">
+            <span className="text-green-500 font-bold">{user.email}</span>{" "}
+            {/* Show User Email */}
+            <button onClick={logout} className="btn btn-error">
+              Logout
+            </button>
+          </div>
         )}
       </div>
     </div>

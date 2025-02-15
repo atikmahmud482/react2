@@ -12,10 +12,11 @@ export const useAuth = () => {
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  // Login function
+  // Login function (dummy authentication)
   const login = (email, password) => {
-    setUser({ email }); // Simulating login
-    console.log("User logged in:", email);
+    const loggedInUser = { email }; // Store user email
+    setUser(loggedInUser);
+    console.log("User logged in:", loggedInUser);
   };
 
   // Logout function
