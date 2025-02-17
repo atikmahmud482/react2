@@ -11,12 +11,16 @@ const HomeLayout = () => {
         <section className="w-11/12 mx-auto">
           <LatestNews></LatestNews>
         </section>
-        <section className="w-11/12 mx-auto py-2">
-          <Navbar></Navbar>
-        </section>
       </header>
-      <nav></nav>
-      <main></main>
+      <nav className="w-11/12 mx-auto py-2">
+        {" "}
+        <Navbar></Navbar>{" "}
+      </nav>
+      <main className="w-11/12 mx-auto p-5">
+        <aside>Left Navbar</aside>
+        <section>Main Content</section>
+        <aside>Right Navbar</aside>
+      </main>
     </div>
   );
 };
