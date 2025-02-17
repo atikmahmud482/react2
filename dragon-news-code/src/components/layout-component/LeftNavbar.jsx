@@ -9,7 +9,12 @@ const LeftNavbar = () => {
   }, []);
   return (
     <div>
-      <h2 className="font-bold">All Category</h2>
+      <h2 className="font-bold">All Category ({category.length})</h2>
+      <div>
+        {category.map((category) => (
+          <button key={category.category_id}> {category.category_name}</button>
+        ))}
+      </div>
     </div>
   );
 };
