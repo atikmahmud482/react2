@@ -4,3 +4,6 @@
 /* body {
   @apply;
 } */
+@theme {
+  --font-poppins: Poppins, sans-serif;
+}
