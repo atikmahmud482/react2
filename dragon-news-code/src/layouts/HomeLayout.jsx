@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
 import LatestNews from "../components/LatestNews";
 import LeftNavbar from "../components/layout-component/LeftNavbar";
@@ -8,23 +9,23 @@ const HomeLayout = () => {
   return (
     <div className="bg-white text-black font-poppins">
       <header>
-        {" "}
-        <Header></Header>
+        <Header />
         <section className="w-11/12 mx-auto">
-          <LatestNews></LatestNews>
+          <LatestNews />
         </section>
       </header>
       <nav className="w-11/12 mx-auto py-2">
-        {" "}
-        <Navbar></Navbar>{" "}
+        <Navbar />
       </nav>
       <main className="w-11/12 mx-auto p-5 grid md:grid-cols-12 gap-3">
-        <aside className="left col-span-3">
-          <LeftNavbar></LeftNavbar>
-        </aside>
-        <section className="col-span-6"></section>
         <aside className="col-span-3">
-          <RightNavbar></RightNavbar>
+          <LeftNavbar />
+        </aside>
+        <section className="col-span-6">
+          <Outlet /> {/* This will render child routes */}
+        </section>
+        <aside className="col-span-3">
+          <RightNavbar />
         </aside>
       </main>
     </div>
