@@ -18,7 +18,6 @@ const LeftNavbar = () => {
             className="btn bg-amber-100 border-none text-black
             hover:bg-amber-200"
             key={category.category_id}>
-            {" "}
             {category.category_name}
           </NavLink>
         ))}
