@@ -1,32 +1,23 @@
 import { FaRegBookmark, FaShareAlt, FaStar } from "react-icons/fa";
 
-const NewsCard = ({ news = {} }) => {
-  const {
-    title = "No title available",
-    author = {},
-    rating = {},
-    total_view = 0,
-    details = "No details available",
-    image_url = "https://via.placeholder.com/400", // Placeholder if no image
-  } = news;
+const NewsCard = (props = {}) => {
+  const { news } = props || {};
 
   return (
-    <div className="card bg-white shadow-md rounded-lg p-4 border">
+    <div className="card bg-white shadow-md rounded-lg p-4 border my-2">
       {/* Author & Actions */}
       <div className="flex justify-between items-center mb-4">
         {/* Author Info */}
         <div className="flex items-center gap-3">
           <img
-            src={author?.img || "https://via.placeholder.com/50"}
-            alt={author?.name || "Unknown"}
+            src={news.author.img}
+            alt={news.author.name}
             className="w-10 h-10 rounded-full object-cover"
           />
           <div>
-            <h3 className="text-sm font-semibold">
-              {author?.name || "Anonymous"}
-            </h3>
+            <h3 className="text-sm font-semibold">{news.author.name}</h3>
             <p className="text-xs text-gray-500">
-              {author?.published_date || "Unknown Date"}
+              {news.author.published_date}
             </p>
           </div>
         </div>
@@ -39,30 +30,28 @@ const NewsCard = ({ news = {} }) => {
       </div>
 
       {/* Title */}
-      <h2 className="text-lg font-bold mb-2">{title}</h2>
+      <h2 className="text-lg font-bold mb-2">{news.title}</h2>
 
       {/* Image */}
       <img
-        src={image_url}
+        src={news.image_url}
         alt="news"
         className="w-full h-52 object-cover rounded-md"
       />
 
       {/* Details */}
       <p className="text-sm text-gray-700 mt-3">
-        {details.length > 100 ? details.slice(0, 100) + "..." : details}
-        <span className="text-blue-500 cursor-pointer"> Read More</span>
+        {news.details.slice(0, 100)}...{" "}
+        <span className="text-blue-500 cursor-pointer">Read More</span>
       </p>
 
       {/* Footer: Ratings & Views */}
       <div className="flex justify-between items-center mt-4 text-gray-600">
         <div className="flex items-center gap-1 text-orange-500">
           <FaStar />
-          <span className="text-sm font-semibold">
-            {rating?.number || "N/A"}
-          </span>
+          <span className="text-sm font-semibold">{news.rating.number}</span>
         </div>
-        <span className="text-sm">{total_view} views</span>
+        <span className="text-sm">{news.total_view} views</span>
       </div>
     </div>
   );
