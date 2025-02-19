@@ -1,7 +1,6 @@
-/* eslint-disable react/no-unescaped-entities */
 import { useState, useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import app from "../firebase/firebase.config";
 
@@ -13,7 +12,10 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/"; // Get previous location or default to home
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +30,8 @@ const Login = () => {
       );
       setUser(userCredential.user);
       setSuccess("Login successful! Redirecting...");
-      setTimeout(() => navigate("/"), 2000); // Redirect after 2 seconds
+
+      setTimeout(() => navigate(from, { replace: true }), 1500); // Redirect back after login
     } catch (error) {
       if (error.code === "auth/user-not-found") {
         setError("No account found with this email. Please register.");
