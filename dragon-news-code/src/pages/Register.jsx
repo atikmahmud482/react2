@@ -1,19 +1,37 @@
 import { useState, useContext } from "react";
-import { AuthContext } from "../provider/AuthProvider"; // Import AuthContext
+import { AuthContext } from "../provider/AuthProvider";
+import { useNavigate } from "react-router-dom"; // To redirect user after successful registration
+import { FirebaseError } from "firebase/app";
 
 const Register = () => {
   const { createNewUser } = useContext(AuthContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(""); // Reset error message
+    setSuccess(""); // Reset success message
+
     try {
       const userCredential = await createNewUser(email, password);
       console.log("User created:", userCredential.user);
+      setSuccess("Registration successful! Redirecting to login...");
+      setTimeout(() => navigate("/auth/login"), 2000); // Redirect to login page
     } catch (error) {
-      console.error("Error creating user:", error.message);
+      if (error instanceof FirebaseError) {
+        if (error.code === "auth/email-already-in-use") {
+          setError("This email is already registered. Please log in.");
+        } else {
+          setError(error.message);
+        }
+      } else {
+        setError("An unexpected error occurred.");
+      }
     }
   };
 
@@ -22,6 +40,13 @@ const Register = () => {
       <div className="card bg-white text-black w-full max-w-lg shadow-2xl p-6 mx-auto mt-3">
         <form onSubmit={handleSubmit} className="card-body space-y-4">
           <h1 className="text-4xl font-bold mb-2">Register Now!</h1>
+
+          {/* Display Error Message */}
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+
+          {/* Display Success Message */}
+          {success && <p className="text-green-500 text-sm">{success}</p>}
+
           <fieldset className="mb-3">
             <label className="text-lg text-black">Name</label>
             <input
