@@ -1,25 +1,31 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider"; // Import AuthContext
 
 const Register = () => {
+  const { createNewUser } = useContext(AuthContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle the registration logic here (like calling Firebase auth or other services)
-    console.log("Registered with:", name, email, password);
+    try {
+      const userCredential = await createNewUser(email, password);
+      console.log("User created:", userCredential.user);
+    } catch (error) {
+      console.error("Error creating user:", error.message);
+    }
   };
 
   return (
     <div className="bg-white text-black min-h-screen flex flex-col justify-start">
-      {/* Registration Form */}
-      <div className="card bg-white text-black w-full max-w-lg shrink-0 shadow-2xl p-6 mx-auto mt-3">
+      <div className="card bg-white text-black w-full max-w-lg shadow-2xl p-6 mx-auto mt-3">
         <form onSubmit={handleSubmit} className="card-body space-y-4">
           <h1 className="text-4xl font-bold mb-2">Register Now!</h1>
           <fieldset className="mb-3">
             <label className="text-lg text-black">Name</label>
             <input
+              name="name"
               type="text"
               className="input bg-white text-black border border-gray-300 p-2 w-full mt-1"
               placeholder="Enter your name"
@@ -31,6 +37,7 @@ const Register = () => {
           <fieldset className="mb-3">
             <label className="text-lg text-black">Email</label>
             <input
+              name="email"
               type="email"
               className="input bg-white text-black border border-gray-300 p-2 w-full mt-1"
               placeholder="Enter your email"
@@ -42,6 +49,7 @@ const Register = () => {
           <fieldset className="mb-3">
             <label className="text-lg text-black">Password</label>
             <input
+              name="password"
               type="password"
               className="input bg-white text-black border border-gray-300 p-2 w-full mt-1"
               placeholder="Enter your password"
@@ -58,7 +66,6 @@ const Register = () => {
           </button>
         </form>
 
-        {/* Login Link Below Form */}
         <div className="mt-4 text-center">
           <p className="text-sm">
             Already have an account?{" "}
