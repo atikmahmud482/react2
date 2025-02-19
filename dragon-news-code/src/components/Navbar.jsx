@@ -24,17 +24,26 @@ const Navbar = () => {
 
       {/* User Section */}
       <div className="flex items-center space-x-4">
-        <img src={userIcon} alt="User" className="w-8 h-8" />
-
         {user ? (
-          // If user is logged in, show Logout button
-          <button
-            onClick={handleLogout}
-            className="btn bg-red-500 text-white px-4 py-2 rounded">
-            Logout
-          </button>
+          <>
+            {/* Show User Name */}
+            <span className="text-lg font-semibold">
+              {user.displayName || "User"}
+            </span>
+
+            <img
+              src={user.photoURL || userIcon}
+              alt="User"
+              className="w-10 h-10 rounded-full border"
+            />
+
+            <button
+              onClick={handleLogout}
+              className="btn bg-red-500 text-white px-4 py-2 rounded">
+              Logout
+            </button>
+          </>
         ) : (
-          // If no user, show Login button
           <Link
             to="/auth/login"
             className="btn bg-blue-500 text-white px-4 py-2 rounded">
