@@ -1,4 +1,5 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./Navbar"; // Check if this file exists
 
 function Home() {
   return <h1 className="text-3xl font-bold text-center">Home Page</h1>;
@@ -10,22 +11,15 @@ function About() {
 
 function App() {
   return (
-    <div className="text-center p-5">
-      <nav className="flex gap-4 justify-center mb-5">
-        <Link to="/" className="btn btn-primary">
-          Home
-        </Link>
-        <Link to="/about" className="btn btn-secondary">
-          About
-        </Link>
-      </nav>
-
+    <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
       </Routes>
-    </div>
+    </Router>
   );
 }
 
 export default App;
+///////kfdjlfkjkf
